@@ -42,6 +42,51 @@ amazon-listing-skill/
     └── validate_listing.py
 ```
 
+## 安装到 Codex
+
+推荐安装到 Codex 的本地 skills 目录。安装后，Codex 才能通过 `$amazon-listing-skill` 识别和调用这个 skill。
+
+### 方法一：使用 git clone
+
+```bash
+cd ~/.codex/skills
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```
+
+如果你的系统设置了 `CODEX_HOME`，可以安装到：
+
+```bash
+cd "$CODEX_HOME/skills"
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```
+
+Windows PowerShell 示例：
+
+```powershell
+cd "$env:USERPROFILE\.codex\skills"
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```
+
+### 方法二：手动下载
+
+1. 打开 <https://github.com/sanshiliu-studio/amazon-listing-skill>
+2. 下载 ZIP
+3. 解压后将文件夹命名为 `amazon-listing-skill`
+4. 放入 Codex skills 目录，例如 `~/.codex/skills/amazon-listing-skill`
+5. 重启 Codex 或开启新对话后使用
+
+安装完成后，确认目录结构类似：
+
+```text
+~/.codex/skills/
+└── amazon-listing-skill/
+    ├── SKILL.md
+    ├── README.md
+    ├── agents/
+    ├── references/
+    └── scripts/
+```
+
 ## 如何使用
 
 在 Codex 中输入：
@@ -156,6 +201,39 @@ Created and maintained by Sanshiliu / 三十六. Website: <https://sanshiliu.com
 This skill is intended for general Amazon listings in marketplaces except Saudi Arabia, Egypt, Turkiye, and the United Arab Emirates.
 
 For excluded marketplaces or media product categories, provide the relevant local or category-specific rules before using the skill.
+
+## Install in Codex
+
+Install this repository into your local Codex skills directory. After installation, Codex can recognize and invoke it with `$amazon-listing-skill`.
+
+### Option 1: git clone
+
+```bash
+cd ~/.codex/skills
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```
+
+If `CODEX_HOME` is set:
+
+```bash
+cd "$CODEX_HOME/skills"
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```
+
+Windows PowerShell example:
+
+```powershell
+cd "$env:USERPROFILE\.codex\skills"
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```
+
+### Option 2: manual download
+
+1. Open <https://github.com/sanshiliu-studio/amazon-listing-skill>
+2. Download the ZIP archive
+3. Extract it and name the folder `amazon-listing-skill`
+4. Move it into your Codex skills directory, such as `~/.codex/skills/amazon-listing-skill`
+5. Restart Codex or start a new conversation
 
 ## Usage
 
