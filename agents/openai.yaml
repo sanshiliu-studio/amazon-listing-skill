@@ -1,0 +1,7 @@
+interface:
+  display_name: "三十六 Amazon Listing Skill"
+  short_description: "三十六亚马逊 listing 文案助理"
+  default_prompt: "Use $amazon-listing-skill to generate an Amazon title, item highlights, bullet points, and search terms for my product."
+
+policy:
+  allow_implicit_invocation: true
