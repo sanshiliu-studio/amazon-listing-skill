@@ -1,49 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
-  <title id="title">Amazon Listing Skill by Sanshiliu</title>
-  <desc id="desc">A Codex skill for titles, item highlights, bullets, product descriptions and backend search terms.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">Amazon Listing Skill — product copy workflow</title>
+  <desc id="desc">Titles, item highlights and bullets connect with product descriptions and keyword fields, accompanied by review notes.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#101d34"/>
-      <stop offset="1" stop-color="#102c3a"/>
-    </linearGradient>
-    <radialGradient id="glow">
-      <stop offset="0" stop-color="#2dd4bf" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101b31"/><stop offset="1" stop-color="#12333e"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#38d4bd" stop-opacity=".13"/><stop offset="1" stop-color="#38d4bd" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#d1fffa" stroke-opacity=".025"/></pattern>
   </defs>
-  <rect width="1200" height="380" rx="24" fill="url(#bg)"/>
-  <ellipse cx="1080" cy="90" rx="340" ry="270" fill="url(#glow)"/>
-  <path d="M925 0 1200 275M1000 0l200 200M1075 0l125 125" stroke="#c8fff4" stroke-opacity=".045" fill="none"/>
+  <rect width="1200" height="460" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="460" rx="24" fill="url(#grid)"/>
+  <ellipse cx="1120" cy="40" rx="360" ry="340" fill="url(#halo)"/>
+  <path d="M575 460C650 365 715 385 793 460" fill="#7298c4" fill-opacity=".045"/>
   <g font-family="Segoe UI, Arial, sans-serif">
-    <rect x="56" y="39" width="6" height="17" rx="3" fill="#53e5c5"/>
-    <text x="75" y="53" fill="#9cb5c5" font-size="13" font-weight="600" letter-spacing="2.7">SANSHILIU / CODEX SKILL</text>
-    <rect x="988" y="31" width="156" height="32" rx="16" fill="#183d47" stroke="#35616a"/>
-    <text x="1066" y="52" text-anchor="middle" fill="#9df2dc" font-size="12" font-weight="600" letter-spacing="1">MAJOR UPDATE</text>
-    <text x="54" y="131" fill="#f5f8fc" font-size="58" font-weight="700" letter-spacing="-1.5">Amazon Listing Skill</text>
-    <text x="57" y="173" fill="#abc3d0" font-size="22">From product facts to complete listing copy.</text>
-    <text x="57" y="204" fill="#6f9cab" font-size="14">WRITE   /   OPTIMIZE   /   LOCALIZE   /   REVIEW</text>
-    <g fill="#163345" stroke="#2a4859">
-      <rect x="56" y="238" width="204" height="86" rx="12"/>
-      <rect x="276" y="238" width="204" height="86" rx="12"/>
-      <rect x="496" y="238" width="204" height="86" rx="12"/>
-      <rect x="716" y="238" width="204" height="86" rx="12"/>
-      <rect x="936" y="238" width="208" height="86" rx="12" stroke="#3b8c86"/>
+    <rect x="64" y="52" width="182" height="27" rx="13.5" fill="#214650"/>
+    <text x="155" y="70" text-anchor="middle" fill="#91f1dd" font-size="10" font-weight="700" letter-spacing="1.6">CODEX / WRITING SKILL</text>
+    <text x="63" y="142" fill="#f5f8fc" font-size="48" font-weight="700" letter-spacing="-.9">Amazon Listing</text>
+    <text x="63" y="200" fill="#68e5cd" font-size="48" font-weight="700" letter-spacing="-.9">Copywriting</text>
+    <text x="65" y="244" fill="#c6d4df" font-size="20">Every field, grounded in product facts.</text>
+    <text x="65" y="274" fill="#769faf" font-size="12" letter-spacing="1.1">DRAFT / REFINE / LOCALIZE / CHECK</text>
+    <path d="M65 317H492" stroke="#7ca6b3" stroke-opacity=".22"/>
+    <text x="65" y="352" fill="#e5edf5" font-size="15" font-weight="600" letter-spacing="2">SANSHILIU</text>
+    <text x="65" y="377" fill="#85acbc" font-size="12">sanshiliu.com</text>
+    <g fill="#193344" stroke="#335263">
+      <rect x="622" y="91" width="182" height="238" rx="16"/>
+      <rect x="824" y="91" width="310" height="109" rx="16"/>
+      <rect x="824" y="220" width="310" height="109" rx="16"/>
     </g>
-    <g fill="#5bddc0" font-size="11" font-weight="600" letter-spacing="1.7">
-      <text x="74" y="263">01 / IDENTITY</text>
-      <text x="294" y="263">02 / DETAILS</text>
-      <text x="514" y="263">03 / BENEFITS</text>
-      <text x="734" y="263">04 / CONTEXT</text>
-      <text x="954" y="263">05 / KEYWORDS</text>
-    </g>
-    <g fill="#eef5fa" font-size="19" font-weight="600">
-      <text x="74" y="298">Title</text>
-      <text x="294" y="298">Item Highlights</text>
-      <text x="514" y="298">Bullet Points</text>
-      <text x="734" y="298">Product Description</text>
-      <text x="954" y="298">Search Terms</text>
-    </g>
-    <text x="57" y="353" fill="#7e9eac" font-size="12">PRODUCT DESCRIPTION  +  KEYWORD COVERAGE  +  MECHANICAL VALIDATION</text>
-    <text x="1143" y="353" text-anchor="end" fill="#7e9eac" font-size="12">2026.10</text>
+    <rect x="643" y="111" width="140" height="132" rx="10" fill="#dce8ee"/>
+    <rect x="661" y="133" width="70" height="9" rx="4.5" fill="#31566b"/>
+    <path d="M662 162H761M662 181H752M662 200H738M662 219H755" stroke="#91afbd" stroke-width="6" stroke-linecap="round"/>
+    <text x="643" y="276" fill="#f5f8fc" font-size="21" font-weight="600">Core copy</text>
+    <text x="643" y="298" fill="#90b3c2" font-size="10.5" letter-spacing=".4">TITLE / HIGHLIGHTS</text>
+    <text x="643" y="315" fill="#90b3c2" font-size="10.5" letter-spacing=".4">BULLET POINTS</text>
+    <rect x="843" y="111" width="67" height="67" rx="12" fill="#26545e"/>
+    <path d="M859 129H894M859 140H891M859 151H882M859 162H888" stroke="#8dd8cf" stroke-width="4" stroke-linecap="round"/>
+    <text x="930" y="137" fill="#f5f8fc" font-size="20" font-weight="600">Product story</text>
+    <text x="930" y="163" fill="#90b3c2" font-size="10.5" letter-spacing=".7">PRODUCT DESCRIPTION</text>
+    <rect x="843" y="240" width="67" height="67" rx="12" fill="#343c60"/>
+    <circle cx="870" cy="267" r="12" fill="none" stroke="#afb5e4" stroke-width="4"/>
+    <path d="m879 277 13 12" stroke="#afb5e4" stroke-width="4" stroke-linecap="round"/>
+    <text x="930" y="266" fill="#f5f8fc" font-size="20" font-weight="600">Keyword field</text>
+    <text x="930" y="292" fill="#90b3c2" font-size="10.5" letter-spacing=".7">BACKEND SEARCH TERMS</text>
+    <text x="623" y="379" fill="#64e4cb" font-size="30" font-weight="700">5</text>
+    <text x="651" y="377" fill="#c4d9e4" font-size="12" letter-spacing="1.1">COPY FIELDS</text>
+    <text x="809" y="377" fill="#83a9b9" font-size="12" letter-spacing="1.1">+ REVIEW NOTES</text>
   </g>
 </svg>

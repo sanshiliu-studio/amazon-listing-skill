@@ -1,10 +1,30 @@
-# Amazon Listing Skill
+<p align="center">
+  <img src="assets/readme-banner.svg" alt="Amazon Listing Skill copy workflow" width="1200" />
+</p>
 
-![Amazon Listing Skill overview](assets/readme-banner.svg)
+<h1 align="center">Amazon Listing Skill</h1>
 
-**A Codex skill for Amazon sellers: write, optimize, localize, and review complete listing copy from confirmed product facts.**
+<p align="center">
+  <strong>Product facts in. Structured, reviewable Amazon copy out.</strong>
+</p>
 
-[中文首页](README.md) · [Chinese usage guide](使用说明.md) · [Major update notes](RELEASE_NOTES.md) · [Download source ZIP](https://github.com/sanshiliu-studio/amazon-listing-skill/archive/refs/heads/main.zip)
+<p align="center">
+  <img src="https://img.shields.io/badge/Codex-Skill-0f766e?style=flat-square" alt="Codex Skill" />
+  <img src="https://img.shields.io/badge/Output-5_fields-2563eb?style=flat-square" alt="5 copy fields" />
+  <img src="https://img.shields.io/badge/Tests-24_cases-16a34a?style=flat-square" alt="24 regression test cases" />
+  <img src="https://img.shields.io/badge/Author-Sanshiliu-7c3aed?style=flat-square" alt="Author Sanshiliu" />
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="使用说明.md">Usage guide</a> ·
+  <a href="SKILL.md">Skill instructions</a> ·
+  <a href="RELEASE_NOTES.md">Major update</a> ·
+  <a href="README.md">中文</a> ·
+  <a href="https://sanshiliu.com">Sanshiliu</a>
+</p>
+
+---
 
 ## What you get
 

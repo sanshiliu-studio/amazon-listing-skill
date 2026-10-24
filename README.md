@@ -1,12 +1,30 @@
-# 三十六 Amazon Listing Skill
+<p align="center">
+  <img src="assets/readme-banner.svg" alt="Amazon Listing Skill 文案工作流" width="1200" />
+</p>
 
-![Amazon Listing Skill 功能概览](assets/readme-banner.svg)
+<h1 align="center">Amazon Listing Skill</h1>
 
-**面向 Amazon 卖家的 Codex 技能，把已确认的产品资料整理为完整 Listing。**
+<p align="center">
+  <strong>围绕真实产品信息，生成可核对的亚马逊商品文案。</strong>
+</p>
 
-支持生成、优化、改写、本地化和检查：标题、商品要点、五点、产品描述与后台搜索词。日常用中文说明需求、提供产品资料即可。
+<p align="center">
+  <img src="https://img.shields.io/badge/Codex-Skill-0f766e?style=flat-square" alt="Codex Skill" />
+  <img src="https://img.shields.io/badge/Output-5_fields-2563eb?style=flat-square" alt="5 copy fields" />
+  <img src="https://img.shields.io/badge/Tests-24_cases-16a34a?style=flat-square" alt="24 regression test cases" />
+  <img src="https://img.shields.io/badge/Author-Sanshiliu-7c3aed?style=flat-square" alt="Author Sanshiliu" />
+</p>
 
-[开始使用](#快速开始) · [中文使用说明](使用说明.md) · [大版本更新说明](RELEASE_NOTES.md) · [English](README.en.md) · [下载完整源码](https://github.com/sanshiliu-studio/amazon-listing-skill/archive/refs/heads/main.zip)
+<p align="center">
+  <a href="#快速开始">快速开始</a> ·
+  <a href="使用说明.md">完整使用说明</a> ·
+  <a href="SKILL.md">技能规则</a> ·
+  <a href="RELEASE_NOTES.md">大版本更新</a> ·
+  <a href="README.en.md">English</a> ·
+  <a href="https://sanshiliu.com">三十六的网站</a>
+</p>
+
+---
 
 ## 本次大版本更新
 
