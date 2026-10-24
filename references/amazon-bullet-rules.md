@@ -2,18 +2,19 @@
 
 Use these rules when drafting or auditing Amazon bullet points.
 
-Primary reference: Amazon Seller Central Product bullet point requirements.
+Primary reference: [Amazon US Product bullet point requirements](https://sellercentral.amazon.com/help/hub/reference/external/GX5L8BF8GLMML6CX?language=en_us), checked 2026-10-21. The US page recommends at least three bullets and says character limits vary by product type. Do not apply a single marketplace's limits universally.
 
 ## Required Shape
 
-- Include at least five bullet points unless the user asks for a different count.
-- Keep each bullet point between 10 and 255 characters.
-- Begin each bullet point with a capital letter.
-- Use a short header followed by a colon, then a concise description.
+- Prefer five distinct bullet points for a full listing unless the user requests another count. This is the skill's writing preference, not a universal platform minimum; the validator checks at least three by default.
+- Use 10-255 characters as a default drafting budget. Apply verified marketplace/product-type limits when available, and pass the selected budget to the validator.
+- Begin each bullet point with a capital letter in languages with letter case. Uncased languages such as Chinese do not need capitalization.
+- Use a short header followed by a colon, then a concise description; a fullwidth colon is accepted for localized drafts. Verify that punctuation is suitable for the target listing field.
 - Write as a sentence fragment. Do not use final punctuation.
 - Use semicolons to separate phrases inside one bullet point when needed.
 - Include a space between number and unit, such as `60 ml`.
 - Write numbers one to nine in full, except in names, model numbers, pack counts, measurements, and technical specs.
+- As this skill's English writing convention, include both metric and imperial units for dimensions and weight when practical; verify conversions manually.
 
 ## Content Rules
 
