@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">Amazon Listing Skill by Sanshiliu</title>
+  <desc id="desc">A Codex skill for titles, item highlights, bullets, product descriptions and backend search terms.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101d34"/>
+      <stop offset="1" stop-color="#102c3a"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="380" rx="24" fill="url(#bg)"/>
+  <ellipse cx="1080" cy="90" rx="340" ry="270" fill="url(#glow)"/>
+  <path d="M925 0 1200 275M1000 0l200 200M1075 0l125 125" stroke="#c8fff4" stroke-opacity=".045" fill="none"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="39" width="6" height="17" rx="3" fill="#53e5c5"/>
+    <text x="75" y="53" fill="#9cb5c5" font-size="13" font-weight="600" letter-spacing="2.7">SANSHILIU / CODEX SKILL</text>
+    <rect x="988" y="31" width="156" height="32" rx="16" fill="#183d47" stroke="#35616a"/>
+    <text x="1066" y="52" text-anchor="middle" fill="#9df2dc" font-size="12" font-weight="600" letter-spacing="1">MAJOR UPDATE</text>
+    <text x="54" y="131" fill="#f5f8fc" font-size="58" font-weight="700" letter-spacing="-1.5">Amazon Listing Skill</text>
+    <text x="57" y="173" fill="#abc3d0" font-size="22">From product facts to complete listing copy.</text>
+    <text x="57" y="204" fill="#6f9cab" font-size="14">WRITE   /   OPTIMIZE   /   LOCALIZE   /   REVIEW</text>
+    <g fill="#163345" stroke="#2a4859">
+      <rect x="56" y="238" width="204" height="86" rx="12"/>
+      <rect x="276" y="238" width="204" height="86" rx="12"/>
+      <rect x="496" y="238" width="204" height="86" rx="12"/>
+      <rect x="716" y="238" width="204" height="86" rx="12"/>
+      <rect x="936" y="238" width="208" height="86" rx="12" stroke="#3b8c86"/>
+    </g>
+    <g fill="#5bddc0" font-size="11" font-weight="600" letter-spacing="1.7">
+      <text x="74" y="263">01 / IDENTITY</text>
+      <text x="294" y="263">02 / DETAILS</text>
+      <text x="514" y="263">03 / BENEFITS</text>
+      <text x="734" y="263">04 / CONTEXT</text>
+      <text x="954" y="263">05 / KEYWORDS</text>
+    </g>
+    <g fill="#eef5fa" font-size="19" font-weight="600">
+      <text x="74" y="298">Title</text>
+      <text x="294" y="298">Item Highlights</text>
+      <text x="514" y="298">Bullet Points</text>
+      <text x="734" y="298">Product Description</text>
+      <text x="954" y="298">Search Terms</text>
+    </g>
+    <text x="57" y="353" fill="#7e9eac" font-size="12">PRODUCT DESCRIPTION  +  KEYWORD COVERAGE  +  MECHANICAL VALIDATION</text>
+    <text x="1143" y="353" text-anchor="end" fill="#7e9eac" font-size="12">2026.10</text>
+  </g>
+</svg>

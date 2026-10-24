@@ -1,382 +1,209 @@
 # 三十六 Amazon Listing Skill
 
-三十六 Amazon Listing Skill 是一个面向 Amazon 卖家的 Codex skill，用于生成、优化、改写和检查 Amazon listing 文案，包括标题、Item Highlights、五点 Bullet Points、产品描述 Product Description 和后台 Search Terms。
+![Amazon Listing Skill 功能概览](assets/readme-banner.svg)
 
-首次使用请看 [中文使用说明](使用说明.md)，包含产品资料模板、常用请求和产品描述用法。
+**面向 Amazon 卖家的 Codex 技能，把已确认的产品资料整理为完整 Listing。**
 
-该 skill 由三十六创建与维护。品牌网站：<https://sanshiliu.com>
+支持生成、优化、改写、本地化和检查：标题、商品要点、五点、产品描述与后台搜索词。日常用中文说明需求、提供产品资料即可。
 
-> 注意：品牌来源信息仅用于识别 skill 来源，不应出现在生成的 Amazon listing 成品文案中。
+[开始使用](#快速开始) · [中文使用说明](使用说明.md) · [大版本更新说明](RELEASE_NOTES.md) · [English](README.en.md) · [下载完整源码](https://github.com/sanshiliu-studio/amazon-listing-skill/archive/refs/heads/main.zip)
 
-## 功能
+## 本次大版本更新
 
-- 生成 Amazon 商品标题、Item Highlights、五点、产品描述和 Search Terms
-- 产品描述围绕功能与特性、使用场景、材质与规格、消费者关注点展开；支持单独生成、优化和检查
-- 根据产品类目调整文案结构和卖点表达
-- 检查标题长度、特殊符号、重复词、促销词和主观夸大词
-- 检查五点格式、长度、标点、单位写法和 claim 风险
-- Search Terms 按产品关键词、同义词和相关搜索词组织；仅在该字段内部去重，不因标题或五点已有相关词而排除；检查覆盖情况、小写、标点和禁用词，并说明未采用关键词的原因
-- 当用户提供关键词、竞品文案或其他来源文案时，联网检索潜在商标/品牌名
-- 如果包含第三方品牌商标，在真实兼容关系下使用 `compatible with`、`for`、`fits`、`intended for` 等兼容表达
-- 避免将第三方品牌名写入后台 Search Terms
+| 更新重点 | 你能获得什么 |
+| --- | --- |
+| **新增产品描述** | 完整 Listing 包含 Product Description，也可单独生成、优化和检查 |
+| **重整后台关键词规则** | 先整理产品关键词，再筛选、内部去重与核对覆盖情况，说明未采用词的原因 |
+| **完善文案校验** | 支持字节预算、可调整限制、严格输入类型、小数规格及 Unicode 处理 |
+| **补齐中文使用文档** | 复制产品资料模板即可开始，常用请求和更新方法集中查阅 |
 
-## 适用范围
+升级前可查看[大版本更新说明](RELEASE_NOTES.md)，了解行为调整和旧 JSON 的兼容方式。
 
-适用于除沙特阿拉伯、埃及、土耳其和阿拉伯联合酋长国以外的 Amazon 站点的一般商品 listing。
+## 一次请求得到什么
 
-如果目标站点是沙特阿拉伯、埃及、土耳其或阿拉伯联合酋长国，或者商品属于媒体类目，需要用户提供对应站点或类目的专用规则。
+| 输出部分 | 主要内容 |
+| --- | --- |
+| **Title** | 产品身份、类型和关键属性 |
+| **Item Highlights** | 补充标题未承载的材质、用途、适配等简短要点 |
+| **Bullet Points** | 默认五条，分别说明不同特点、用途及购买关注点 |
+| **Product Description** | 用自然段连接功能、场景、材质规格与消费者关注点 |
+| **Search Terms** | 一行空格分隔的相关产品搜索关键词 |
+| **Review Notes** | 缺失资料、所用预算、关键词覆盖情况和待确认事项 |
 
-## 文件结构
+也可以只要求其中一项，例如“只生成产品描述”或“只检查 Search Terms”。审核备注与准备上架的正文分开。
+
+## 快速开始
+
+安装后，在 Codex 中发送下面这段请求，或换成你自己的产品资料：
 
 ```text
-amazon-listing-skill/
-├── SKILL.md
-├── README.md
-├── 使用说明.md
-├── agents/
-│   └── openai.yaml
-├── references/
-│   ├── amazon-title-rules.md
-│   ├── amazon-bullet-rules.md
-│   ├── amazon-description-rules.md
-│   ├── amazon-search-terms.md
-│   ├── category-writing-examples.md
-│   ├── compliance-checklist.md
-│   └── trademark-internet-check.md
-├── scripts/
-│   └── validate_listing.py
-└── tests/
-    └── test_validate_listing.py
+使用 $amazon-listing-skill，生成美国站英文完整 Listing。
+
+产品：红色聚丙烯无盖收纳盒
+尺寸：20 × 15 × 10 cm
+数量：一件装
+用途：家庭办公室的书桌文具收纳
+消费者关注：是否带盖、尺寸、材质、包装数量
+关键词：storage box, storage bin, desk organizer, desktop organizer,
+office organizer, stationery holder, red plastic container, open top box
+
+只使用已确认的事实。没有提供的性能、认证或适配信息不要编造。
+缺少关键资料时先问我。
 ```
 
-## 安装到 Codex
+可以同时附上产品图片、规格表、包装或已有文案。重要参数建议提供文字；不知道的项目写“未知”或“未提供”。
 
-推荐安装到 Codex 的本地 skills 目录。安装后，Codex 才能通过 `$amazon-listing-skill` 识别和调用这个 skill。
+更多模板见[中文使用说明](使用说明.md)。
 
-### 方法一：使用 git clone
+### 只写产品描述
 
-```bash
-cd ~/.codex/skills
-git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+```text
+使用 $amazon-listing-skill，只生成英文产品描述。
+产品事实：（填写已确认的产品资料）
+目标站点：（填写）
+消费者最关注的问题及已确认答案：（填写）
+请用纯文本自然段，不新增没有依据的卖点。
 ```
 
-如果你的系统设置了 `CODEX_HOME`，可以安装到：
+描述围绕四个方向自然展开：**功能与特性 → 使用场景 → 材质与规格 → 消费者关注点**。信息不足时会询问或省略，不会将五点简单拼成一段。Product Description 与 A+ 内容是不同交付项。
 
-```bash
-cd "$CODEX_HOME/skills"
-git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+### 只整理 Search Terms
+
+```text
+使用 $amazon-listing-skill，只生成 Search Terms 和简短审核备注。
+产品事实：（填写）
+目标站点和语言：（填写）
+候选关键词及优先级：（粘贴）
+请核对关键词覆盖情况，说明未采用关键词的具体原因。
 ```
 
-Windows PowerShell 示例：
+**去重只在 Search Terms 内部进行。** 标题、五点、商品要点或产品描述中已有的相关关键词，仍可放进 Search Terms，不因跨字段重复而被删除或降低优先级。
+
+例如 `desk organizer`、`desktop organizer`、`office organizer` 可以整理为：
+
+```text
+desk desktop office organizer
+```
+
+共享词只出现一次，各条短语中的有效词仍会保留。关键词覆盖不等于已经被 Amazon 索引，也不保证排名。
+
+## 安装与更新
+
+### 安装位置
+
+选择一个位置安装即可。根据 [OpenAI 官方技能文档](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills)，用户级技能使用 `~/.agents/skills`，项目级技能使用项目中的 `.agents/skills`。
+
+<details>
+<summary><strong>Windows PowerShell 安装</strong></summary>
 
 ```powershell
-cd "$env:USERPROFILE\.codex\skills"
-git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills" | Out-Null
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git "$env:USERPROFILE\.agents\skills\amazon-listing-skill"
 ```
 
-### 方法二：手动下载
+</details>
 
-1. 打开 <https://github.com/sanshiliu-studio/amazon-listing-skill>
-2. 下载 ZIP
-3. 解压后将文件夹命名为 `amazon-listing-skill`
-4. 放入 Codex skills 目录，例如 `~/.codex/skills/amazon-listing-skill`
-5. 重启 Codex 或开启新对话后使用
-
-安装完成后，确认目录结构类似：
-
-```text
-~/.codex/skills/
-└── amazon-listing-skill/
-    ├── SKILL.md
-    ├── README.md
-    ├── agents/
-    ├── references/
-    └── scripts/
-```
-
-## 如何使用
-
-在 Codex 中输入：
-
-```text
-Use $amazon-listing-skill 帮我写一个 Amazon listing。
-产品：iPhone 16 Pro 手机壳
-品牌：ABC
-材质：TPU + PC
-颜色：黑色
-卖点：防摔、MagSafe、轻薄、镜头保护
-关键词：iPhone 16 Pro case, MagSafe case, shockproof phone case
-目标站点：美国站
-```
-
-也可以从更简单的信息开始：
-
-```text
-Use $amazon-listing-skill
-帮我根据这些关键词生成 Amazon 标题、五点、产品描述和 Search Terms：
-iPhone 16 Pro case, MagSafe, shockproof, slim, black
-```
-
-如果产品信息不足，skill 会优先询问 1-3 个最关键问题，例如产品类型、品牌、材质、目标站点、关键词、兼容型号或核心卖点。
-
-## 产品描述功能
-
-完整 listing 默认在五点之后输出 `Product Description`。产品描述以自然段组织功能与特性、使用场景、已知材质规格以及消费者关注的问题，解释产品事实对买家的实际价值。缺少尺寸、性能、适配或护理依据时会询问或省略，不会为填满结构而编造。
-
-也可只写描述：
-
-```text
-Use $amazon-listing-skill 只生成英文产品描述。
-产品：红色硅胶锅铲，包装内含一把，适合家庭厨房日常烹饪。
-已知信息：硅胶铲头，带手柄；没有提供耐温、尺寸、洗碗机适用性证明。
-消费者关注：包装数量、使用场景、材质；未知信息请放在审核备注中。
-目标站点：美国站。
-```
-
-默认使用纯文本自然段和 2,000 字符写作预算，可按已核实的站点/产品类型规则调整。产品描述与 A+ 内容是不同交付项。
-
-## 推荐提供的信息
-
-```text
-产品名称：
-品牌名：
-目标站点：
-输出语言：
-产品类目：
-颜色/尺寸/材质/数量：
-核心卖点：
-使用场景：
-消费者关注点及已确认答案：
-目标人群：
-关键词：
-是否兼容其他品牌/型号：
-竞品链接或参考文案：
-需要使用的 claims 及证明来源：
-```
-
-## 商标和兼容表达
-
-当用户提供的关键词、竞品文案或其他来源文案中可能包含第三方品牌名或商标时，skill 会先进行互联网检索。若某个词看起来属于其他品牌或产品线，且商品只是兼容该品牌产品，应使用兼容表达。
-
-推荐：
-
-```text
-Case compatible with iPhone 16 Pro
-Replacement filter for Dyson V11 vacuum
-Charging cable designed for Samsung Galaxy devices
-```
-
-避免：
-
-```text
-iPhone Case
-Dyson V11 Filter
-Samsung Charging Cable
-```
-
-联网检索只能作为方向性判断，不能替代卖家的商标、法务、Amazon Brand Registry 或账户健康审核。
-
-## 校验脚本
-
-如果将 listing 保存为 JSON，可以运行：
+<details>
+<summary><strong>macOS / Linux 安装</strong></summary>
 
 ```bash
-python scripts/validate_listing.py listing.json
+mkdir -p ~/.agents/skills
+git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git ~/.agents/skills/amazon-listing-skill
 ```
 
-以上命令从 skill 目录运行；在其他目录使用脚本和 JSON 文件的完整路径。脚本只依赖 Python 标准库。
+</details>
 
-默认检查标题不超过 75 字符、Item Highlights 不超过 125 字符、至少三条 Bullet Points、每条 10-255 字符，以及 Search Terms 的完整 UTF-8 内容不超过 249 字节（保守计入空格）。默认写作仍推荐五条，不能将这个偏好当作所有站点的最低要求。
+也可以[下载完整源码 ZIP](https://github.com/sanshiliu-studio/amazon-listing-skill/archive/refs/heads/main.zip)，将包内技能目录命名为 `amazon-listing-skill`，放入所选的技能发现目录。更新没有被识别时，可以重启 Codex。
 
-站点和产品类型规则可能不同；确认适用规则后，可调整校验预算：
+已有旧路径安装请按实际位置更新，避免同时维护两份名称相同、都会被加载的技能。找不到技能时，也可按[使用说明](使用说明.md)通过完整文件路径指定 `SKILL.md`。
+
+### 更新已有安装
+
+通过 Git 安装的用户，在实际技能目录中处理好自己的改动后执行：
 
 ```bash
-python scripts/validate_listing.py listing.json --min-bullets 5 --bullet-max-chars 255 --search-max-bytes 249
-python scripts/validate_listing.py --help
+git pull --ff-only
 ```
 
-可选参数：`--title-max-chars`、`--min-bullets`、`--bullet-min-chars`、`--bullet-max-chars`、`--search-max-bytes`。参数必须是正整数，五点最小长度不能大于最大长度。限制通过命令行传入，不是 JSON 字段；放宽参数不代表符合 Amazon 当前规则。美国站五点长度应按产品类型核实。
+通过 ZIP 安装的用户，先备份自定义规则，再把新版技能文件更新到原目录，保留自己的商品资料和输出。完整升级步骤见[更新说明](RELEASE_NOTES.md#如何更新已有安装)。
 
-新增描述校验：`--description-max-chars`（默认 2000）调整描述字符预算；`--require-description` 要求完整 listing 包含描述；`--description-only` 仅校验描述。字符统计计入换行和空格，预算不是所有站点的通用上限。
+## 资料怎么提供
+
+| 信息 | 示例或说明 |
+| --- | --- |
+| 站点与语言 | 美国站 / 英文；站点和语言分别说明 |
+| 产品身份 | 名称、品牌、类目、型号、具体变体 |
+| 材质与规格 | 材质、颜色、尺寸、重量、数量及单位 |
+| 包装内容 | 实际包含的物品和配件 |
+| 卖点与场景 | 已确认的特点、用途及目标人群 |
+| 消费者关注点 | 适配、清洁、安装、尺寸等购买问题及已确认答案 |
+| 关键词 | 产品词、相关词、优先级及研究数据来源（如有） |
+| 证据与参考 | 包装、说明书、检测报告、已有文案或竞品资料 |
+
+竞品资料可帮助理解表达和购买关注点，不能用作自己产品的规格或证明。缺少必要信息时，技能会优先询问一至三个关键问题。
+
+## 校验与审核
+
+日常可以直接说“请运行这个技能的校验，并告诉我仍需确认什么”。卖家无需自己操作脚本。
+
+<details>
+<summary><strong>查看默认预算和手动校验方法</strong></summary>
+
+| 字段 | 默认设置 |
+| --- | --- |
+| 标题 | 75 字符，含空格 |
+| Item Highlights | 125 字符，含标点和空格 |
+| 五点 | 默认生成五条；校验至少三条，每条 10–255 字符 |
+| 产品描述 | 2,000 字符写作预算，含空格和换行 |
+| Search Terms | 美国站草稿保守使用最多 249 UTF-8 字节，计入空格 |
+
+上述设置不替代站点与产品类型的当前要求。五条是写作偏好，五点长度需要按产品类型确认。搜索词按字节计算，中文、日文和部分重音字符会占多个字节。
+
+从技能目录运行以下命令；在其他目录运行时使用完整路径。脚本只依赖 Python 标准库。
 
 ```bash
 python scripts/validate_listing.py listing.json --require-description
-python scripts/validate_listing.py description.json --description-only --description-max-chars 2000
+python scripts/validate_listing.py description.json --description-only
+python scripts/validate_listing.py --help
 ```
 
-描述支持自然段、数字规格及多语言文字，基础检查包括非空字符串、长度、HTML 标签和明显的网址/邮箱。默认采用纯文本格式，因此校验会拒绝 `<br>` 等标签；这是本 skill 的格式选择。四个内容方向是否充分、事实是否有依据，以及电话等其他联系方式仍需人工复核。
+`product_description` 提供时必须是非空字符串。旧 JSON 可以省略它；新完整 Listing 可用 `--require-description` 确认描述存在，独立描述使用 `--description-only`。
 
-脚本支持 Unicode 大小写和标点检查；中文等没有大小写的语言不要求首字母大写。未分词的中文、日文仍需人工检查重复概念。`PASSED` 仅表示基础机械检查通过，商标、品牌词、ASIN、claim、单位换算及站点规则仍需复核。
+预算参数包括 `--title-max-chars`、`--min-bullets`、`--bullet-min-chars`、`--bullet-max-chars`、`--description-max-chars`、`--search-max-bytes`。数值必须是正整数，五点最小长度不能大于最大长度。放宽参数不会自动建立合规性。
 
-JSON 示例：
+描述采用纯文本格式，因此脚本会拒绝 `<br>` 等 HTML 标签；这是本技能的格式选择。完整 JSON 结构见 [SKILL.md](SKILL.md)。
 
-```json
-{
-  "title": "ExampleBrand Product Type, Key Attribute",
-  "item_highlights": "material, use case, size",
-  "bullets": [
-    "Header: detail",
-    "Header: detail",
-    "Header: detail",
-    "Header: detail",
-    "Header: detail"
-  ],
-  "product_description": "Describe the verified features and relevant use scenarios in natural paragraphs, including known materials/specifications and confirmed answers to buyer concerns.",
-  "search_terms": "keyword synonym use case"
-}
-```
+</details>
 
-JSON 顶层必须是对象；`title` 和 `search_terms` 是非空字符串，`bullets` 是字符串数组。`item_highlights` 可以省略或为空字符串，不可使用 `null`。
+`PASSED` 表示选定设置下的机械检查通过。来源关键词覆盖、商标、兼容性、受监管声明、单位换算及当前站点规则仍需审核；中文、日文未分词文本的重复概念也需要人工检查。
 
-`product_description` 提供时必须为非空字符串。旧 JSON 可省略该字段，新完整 listing 应使用 `--require-description` 检查。仅写描述时，输入可为 `{"product_description": "描述正文"}` 并使用 `--description-only`，无需填写其他 listing 字段。
+## 文档导航
 
-维护时运行回归测试：
+| 文档 | 适合什么时候看 |
+| --- | --- |
+| [中文使用说明](使用说明.md) | 第一次使用、准备资料、复制常用请求模板 |
+| [大版本更新说明](RELEASE_NOTES.md) | 从旧版升级、了解兼容性和行为调整 |
+| [技能主说明](SKILL.md) | 查看实际执行规则、输入结构和默认输出 |
+| [产品描述规则](references/amazon-description-rules.md) | 组织功能、场景、规格与消费者关注点 |
+| [Search Terms 规则](references/amazon-search-terms.md) | 整理候选关键词、内部去重和核对覆盖 |
+| [审核清单](references/compliance-checklist.md) | 交付前逐项核查 |
+| [历史更新记录](<Update Log.md>) | 查看每次修改的详细记录 |
+| [English overview](README.en.md) | 英文介绍、安装和使用要点 |
+
+## 适用范围
+
+适用于一般 Amazon 商品文案。沙特阿拉伯、埃及、土耳其、阿拉伯联合酋长国及媒体类目的合规审核，需要相应站点或类目的专用规则。
+
+涉及第三方品牌时，会根据需要检索商标和兼容信息；联网核验属于方向性判断，卖家仍需确认使用依据和实物一致性。技能不会自动把文案发布到 Amazon。
+
+## 开发与维护
 
 ```bash
 python -B -m unittest discover -s tests -v
 ```
 
-## English Introduction
+项目结构：`SKILL.md` 为入口；`references/` 为专项规则；`scripts/` 为校验工具；`tests/` 为回归测试；`assets/` 为项目展示资源。
 
-Sanshiliu Amazon Listing Skill is a Codex skill for Amazon sellers. It helps generate, optimize, rewrite, and audit Amazon listing copy, including product titles, item highlights, bullet points, product descriptions, and backend search terms.
+由 **三十六 / Sanshiliu** 创建与维护 · [sanshiliu.com](https://sanshiliu.com)
 
-Created and maintained by Sanshiliu / 三十六. Website: <https://sanshiliu.com>
-
-> Source and brand identity are for skill attribution only and should not be included in generated Amazon listing copy.
-
-## Features
-
-- Generate Amazon titles, item highlights, bullet points, product descriptions, and backend search terms
-- Write standalone or full-listing descriptions around verified features, use scenarios, materials/specifications, and consumer concerns
-- Adapt copy structure to product category and shopper intent
-- Check title length, special characters, repeated words, promotional wording, and subjective claims
-- Check bullet point format, length, punctuation, measurement spacing, and claim risk
-- Build backend Search Terms from relevant product keywords and synonyms; deduplicate only within Search Terms, keeping relevant title/bullet keywords eligible; review backend coverage and explain exclusions alongside format checks
-- Search the internet for potential third-party trademarks when users provide keywords, competitor copy, or other source text
-- Use compatibility wording such as `compatible with`, `for`, `fits`, or `intended for` when a third-party trademark is necessary and the product is genuinely compatible
-- Avoid third-party brand names in backend search terms
-
-## Scope
-
-This skill is intended for general Amazon listings in marketplaces except Saudi Arabia, Egypt, Turkiye, and the United Arab Emirates.
-
-For excluded marketplaces or media product categories, provide the relevant local or category-specific rules before using the skill.
-
-## Install in Codex
-
-Install this repository into your local Codex skills directory. After installation, Codex can recognize and invoke it with `$amazon-listing-skill`.
-
-### Option 1: git clone
-
-```bash
-cd ~/.codex/skills
-git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
-```
-
-If `CODEX_HOME` is set:
-
-```bash
-cd "$CODEX_HOME/skills"
-git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
-```
-
-Windows PowerShell example:
-
-```powershell
-cd "$env:USERPROFILE\.codex\skills"
-git clone https://github.com/sanshiliu-studio/amazon-listing-skill.git
-```
-
-### Option 2: manual download
-
-1. Open <https://github.com/sanshiliu-studio/amazon-listing-skill>
-2. Download the ZIP archive
-3. Extract it and name the folder `amazon-listing-skill`
-4. Move it into your Codex skills directory, such as `~/.codex/skills/amazon-listing-skill`
-5. Restart Codex or start a new conversation
-
-## Usage
-
-Start with:
-
-```text
-Use $amazon-listing-skill to generate an Amazon listing.
-Product: iPhone 16 Pro phone case
-Brand: ABC
-Material: TPU + PC
-Color: Black
-Benefits: drop protection, MagSafe, slim design, camera protection
-Keywords: iPhone 16 Pro case, MagSafe case, shockproof phone case
-Marketplace: US
-```
-
-Or:
-
-```text
-Use $amazon-listing-skill
-Generate an Amazon title, bullet points, product description, and Search Terms from these keywords:
-iPhone 16 Pro case, MagSafe, shockproof, slim, black
-```
-
-If product information is incomplete, the skill asks only the most important clarification questions before drafting.
-
-## Recommended Input
-
-```text
-Product name:
-Brand:
-Marketplace:
-Output language:
-Product category:
-Color/size/material/quantity:
-Core selling points:
-Use cases:
-Consumer concerns and confirmed answers:
-Target audience:
-Keywords:
-Compatibility brands or models:
-Competitor links or reference copy:
-Claims to include and proof source:
-```
-
-## Trademark and Compatibility Handling
-
-When user-provided keywords or source copy may contain third-party trademarks, the skill searches the internet before drafting. If a term appears to be another brand or product line and the seller's product is only compatible with it, the skill uses clear compatibility wording.
-
-Preferred:
-
-```text
-Case compatible with iPhone 16 Pro
-Replacement filter for Dyson V11 vacuum
-Charging cable designed for Samsung Galaxy devices
-```
-
-Avoid:
-
-```text
-iPhone Case
-Dyson V11 Filter
-Samsung Charging Cable
-```
-
-Internet checks are directional only and do not replace seller legal review, Amazon Brand Registry review, or account-health review.
-
-## Validator Options
-
-Run the validator from the skill directory, or use absolute paths for the script and JSON input. It uses only the Python standard library.
-
-Default mechanical budgets are 75 title characters, 125 Item Highlights characters, at least three bullets, 10-255 characters per bullet, and at most 249 UTF-8 bytes for the complete search terms field including spaces as a conservative check. Five bullets remain the writing preference. US bullet length limits vary by product type, and other marketplace rules must be verified separately.
-
-Use `--title-max-chars`, `--min-bullets`, `--bullet-min-chars`, `--bullet-max-chars`, and `--search-max-bytes` to apply verified limits or an explicit draft budget. These are command-line options, not JSON fields. All must be positive integers, and the minimum bullet length must not exceed the maximum. Changing a budget does not establish compliance.
-
-Input must be a JSON object with nonempty string `title` and `search_terms` fields and a string array `bullets`. Optional `item_highlights` can be omitted or an empty string, but cannot be null.
-
-Product descriptions are included in new full-listing output and can also be requested separately. Use natural plain-text paragraphs addressing supported features, use scenarios, materials/specifications, and consumer concerns. Do not invent missing facts or copy the bullet points line for line.
-
-`product_description` must be a nonempty string when supplied. Older JSON may omit it; use `--require-description` for new full listings. Use `--description-only` with an object containing only `product_description` to check a standalone description. `--description-max-chars` changes the default 2,000-character draft budget, including whitespace and paragraph breaks; verify current marketplace/category limits separately.
-
-Description checks reject HTML tags (including break tags under this skill's plain-text format), obvious external URLs, and email contact information. Content coverage, other contact details, and factual support still require manual review. Product Description and A+ content are separate deliverables.
-
-`PASSED` covers mechanical checks only. Manually review claims, brands/ASINs, trademarks, conversions, current marketplace/category rules, and word segmentation in languages such as Chinese and Japanese. Capitalization checks apply only to languages with letter case.
-
-Run regression tests with `python -B -m unittest discover -s tests -v`.
+项目名称和来源只用于识别技能，不会自动加入生成的商品文案。
