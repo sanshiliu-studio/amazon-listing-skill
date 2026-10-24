@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/Output-5_fields-2563eb?style=flat-square" alt="5 copy fields" />
   <img src="https://img.shields.io/badge/Tests-24_cases-16a34a?style=flat-square" alt="24 regression test cases" />
   <img src="https://img.shields.io/badge/Author-Sanshiliu-7c3aed?style=flat-square" alt="Author Sanshiliu" />
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-0284c7?style=flat-square" alt="License AGPL-3.0-only" /></a>
 </p>
 
 <p align="center">
@@ -221,6 +222,14 @@ python -B -m unittest discover -s tests -v
 ```
 
 项目结构：`SKILL.md` 为入口；`references/` 为专项规则；`scripts/` 为校验工具；`tests/` 为回归测试；`assets/` 为项目展示资源。
+
+## 开源许可证
+
+本项目原创的技能规则、代码、文档与展示资源采用 [GNU AGPL v3.0](LICENSE)（`AGPL-3.0-only`，仅第 3 版）发布。
+
+允许商业使用、修改和再分发，须遵守许可证中的相应义务。分发受许可覆盖的作品，以及通过网络向用户提供修改版本的交互服务时，应按许可证要求提供对应源代码。完整条件以 [LICENSE](LICENSE) 为准；引用的第三方资料遵循其原有条款。
+
+Copyright (C) 2026 三十六 / Sanshiliu.
 
 由 **三十六 / Sanshiliu** 创建与维护 · [sanshiliu.com](https://sanshiliu.com)
 

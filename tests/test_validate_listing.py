@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 三十六 / Sanshiliu
+# SPDX-License-Identifier: AGPL-3.0-only
 """Regression coverage for observable validator behavior; no files are created."""
 
 from __future__ import annotations

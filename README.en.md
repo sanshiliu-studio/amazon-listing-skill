@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/Output-5_fields-2563eb?style=flat-square" alt="5 copy fields" />
   <img src="https://img.shields.io/badge/Tests-24_cases-16a34a?style=flat-square" alt="24 regression test cases" />
   <img src="https://img.shields.io/badge/Author-Sanshiliu-7c3aed?style=flat-square" alt="Author Sanshiliu" />
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-0284c7?style=flat-square" alt="License AGPL-3.0-only" /></a>
 </p>
 
 <p align="center">
@@ -125,6 +126,14 @@ General listing workflows are supported. Saudi Arabia, Egypt, Turkiye, the UAE, 
 ```bash
 python -B -m unittest discover -s tests -v
 ```
+
+## License
+
+Original skill instructions, code, documentation, and presentation assets in this project are licensed under [GNU AGPL v3.0](LICENSE) (`AGPL-3.0-only`, version 3 only).
+
+Commercial use, modification, and redistribution are permitted subject to the license. Distributing covered works and offering network interaction with a modified version carry corresponding source obligations as specified in the [LICENSE](LICENSE). Referenced third-party materials remain subject to their own terms.
+
+Copyright (C) 2026 三十六 / Sanshiliu.
 
 Created and maintained by **三十六 / Sanshiliu** · [sanshiliu.com](https://sanshiliu.com)
 

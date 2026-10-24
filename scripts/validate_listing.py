@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 三十六 / Sanshiliu
+# SPDX-License-Identifier: AGPL-3.0-only
 """Validate basic Amazon listing copy rules (not a full compliance assessment).
 
 Input JSON:

@@ -1,5 +1,6 @@
 ---
 name: amazon-listing-skill
+license: AGPL-3.0-only
 description: Use when writing, optimizing, localizing, or auditing Amazon listing titles, item highlights, bullet points, product descriptions, or backend search terms, including keyword placement and trademark-sensitive copy. For Saudi Arabia, Egypt, Turkiye, the United Arab Emirates, or media products, marketplace/category-specific rules are needed for compliance review.
 ---
 
